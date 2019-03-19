@@ -1,6 +1,4 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
@@ -37,6 +35,63 @@ public class Main {
             System.exit(0);
 
         }
+
+        File f1 = new File((authorName+"-IEEE.json"));
+        File f2 = new File((authorName+"-ACM.json"));
+        File f3 = new File((authorName+"-NJ.json"));
+
+        if(f1.exists() && f2.exists() && f3.exists()){
+
+
+
+            try{
+                throw new FileExistsException();
+
+            }catch (FileExistsException fee){
+
+                System.out.println("\nA file already exists with the name: "+(authorName+"-IEEE.json"));
+                System.out.println("File will be renamed as: "+(authorName+"-IEEE-BU.json")+" and any old BUs will be deleted.\n");
+
+                System.out.println("A file already exists with the name: "+(authorName+"-ACM.json"));
+                System.out.println("File will be renamed as: "+(authorName+"-ACM-BU.json")+" and any old BUs will be deleted.\n");
+
+                System.out.println("A file already exists with the name: "+(authorName+"-NJ.json"));
+                System.out.println("File will be renamed as: "+(authorName+"-NJ-BU.json")+" and any old BUs will be deleted.\n");
+
+                new File((authorName+"-IEEE-BU.json")).delete();
+                new File((authorName+"-ACM-BU.json")).delete();
+                new File((authorName+"-NJ-BU.json")).delete();
+                f1.renameTo(new File((authorName+"-IEEE-BU.json")));
+                f2.renameTo(new File((authorName+"-ACM-BU.json")));
+                f3.renameTo(new File((authorName+"-NJ-BU.json")));
+
+
+            }
+
+        }
+
+            try{
+
+                pw = new PrintWriter(new FileOutputStream((authorName+"-IEEE.json")));
+                pw = new PrintWriter(new FileOutputStream((authorName+"-ACM.json")));
+                pw = new PrintWriter(new FileOutputStream((authorName+"-NJ.json")));
+
+//                System.out.println("Files "+(authorName+"-IEEE.json")+", "+(authorName+"-ACM.json")+", and "+(authorName+"-NJ.json")+"" +
+//                        " have been created!");
+                //not yet
+
+            }catch (FileNotFoundException fnfe){
+
+            }
+
+
+        pw.close();
+
+
+
+    }
+
+    public static void processBibFiles(){
 
 
 
