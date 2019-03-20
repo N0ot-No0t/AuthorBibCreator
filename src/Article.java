@@ -109,9 +109,37 @@ public class Article {
         this.month = month;
     }
 
+    public void resetAll(){
+
+         authors = "";
+         journal = "";
+         title = "";
+         year = "";
+         volume = "";
+         number = "";
+         pages = "";
+         keywords= "";
+         doi = "";
+         ISSN= "";
+         month = "";
+
+    }
+
     public String toIEEE(){
 
-        return (authors.replace(" and",",").replace("author={","").replace("},","")+". \""+title.replace("title={","").replace("},","")+"\" ,"+journal.replace("journal={","").replace("},","")+", vol. "+volume.replace("volume={","").replace("},","")+", no. "+number.replace("number={","").replace("},","")+", p. "+pages.replace("pages={","").replace("},","")+", "+month.replace("month={","").replace("},","")+" "+year.replace("year={","").replace("},",""));
+        return (authors.replace(" and",",").replace("author={","").replace("}, ","")+". \""+title.replace("title={","").replace("}, ","")+"\", "+journal.replace("journal={","").replace("}, ","")+", vol. "+volume.replace("volume={","").replace("}, ","")+", no. "+number.replace("number={","").replace("}, ","")+", p. "+pages.replace("pages={","").replace("}, ","")+", "+month.replace("month={","").replace("},","")+" "+year.replace("year={","").replace("}, ","")+".");
+
+    }
+
+    public String toACM(){
+
+        return (authors.split("and")[0].replace("author={","")+"et al. "+year.replace("year={","").replace("}, ","")+". "+title.replace("title={","").replace("}, ","")+". "+journal.replace("journal={","").replace("}, ","")+". "+volume.replace("volume={","").replace("}, ","")+", "+number.replace("number={","").replace("}, ","")+" ("+year.replace("year={","").replace("}, ","")+"), "+pages.replace("pages={","").replace("}, ","")+". DOI:https://doi.org/"+ doi.replace("doi={","").replace("}, ","")+".");
+
+    }
+
+    public String toNJ(){
+
+        return (authors.replace(" and"," &").replace("author={","").replace("}, ","")+". "+title.replace("title={","").replace("}, ","")+". "+journal.replace("journal={","").replace("}, ","")+". "+volume.replace("volume={","").replace("}, ","")+", "+pages.replace("pages={","").replace("}, ","")+" ("+year.replace("year={","").replace("}, ","")+").");
 
     }
 
